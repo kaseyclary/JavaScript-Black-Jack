@@ -1,0 +1,62 @@
+.btnContainer{
+  text-align: center;
+}
+
+.btn{
+  display: inline-block;
+  margin: auto;
+  text-align: center;
+  font-size: 3rem;
+  color: #fff;
+  border: 1px solid;
+  border-radius: 20px;
+  width: 10vw;
+  height: 10vh;
+}
+
+#play{
+  background-color: blue;
+}
+
+#deal{
+  background-color: rgb(251, 56, 219);
+}
+
+#hit{
+  background-color: rgb(93, 255, 29);
+}
+
+#stand{
+  background-color: #ff2c2c;
+}
+
+#end{
+  background-color: #ffa42c;
+}
+
+#cardScreen{
+  text-align: center;
+  width: 70vw;
+  margin: auto;
+}
+
+.card{
+  height: 80%;
+  width: 20%;
+  margin: auto;
+  border: 1px solid #000;
+  border-radius: 10px;
+  font-size: 7rem;
+  text-align: center;
+}
+
+#dealerCards{
+  display: flex;
+  height: 35vh;
+  width: 100%;
+}
+#playerCards{
+  display: flex;
+  height: 35vh;
+  width: 100%;
+}

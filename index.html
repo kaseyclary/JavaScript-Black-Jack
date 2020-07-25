@@ -7,9 +7,21 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="player1"></div>
-  <div id="dealer"></div>
-  <button id="pop">pop</button>
+  <div id="cardScreen">
+    <h1>Dealer</h1>
+    <h2>Score: <span id="dealerScore"></span></h2>
+      <div id="dealerCards"></div>
+    <h1>Player</h1>
+    <h2>Score: <span id="playerScore"></span></h2>
+      <div id="playerCards"></div>
+  </div>
+  <div class="btnContainer">
+    <button class="btn" id="play">Play</button>
+    <button class="btn" id="deal">Deal</button>
+    <button class="btn" id="hit">Hit</button>
+    <button class="btn" id="stand">Stand</button>
+    <button class="btn" id="end">End</button>
+  </div>
 </body>
 <script src="script.js"></script>
 </html>
