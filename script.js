@@ -16,6 +16,7 @@ let hitBtn = document.getElementById('hit');
 let standBtn = document.getElementById('stand');
 let endBtn = document.getElementById('end');
 
+/* EVENT LISTENERS FOR BUTTONS */
 playBtn.addEventListener('click', () =>{
   initSession();
 });
@@ -112,17 +113,22 @@ function checkForAce(){
 
 }
 
-//Deals two cards to the dealer and the player at the start of the round
+//Deals cards at the beginning of the round
 function deal(){
-  cardsDealt = true;
-  clearScore();
-  clearDisplay();
-  dealerCards.push(drawCard(), drawCard());
-  console.log("Dealer: ",dealerCards[0], dealerCards[1])
-  playerTurn = true;
-  playerCards.push(drawCard(), drawCard());
-  console.log("Player 1: ",playerCards[0], playerCards[1])
-  updateScore();
+  if(cardsDealt === "true"){
+    alert("Finish the hand before dealing again");
+  }
+  else{
+    cardsDealt = true;
+    clearScore();
+    clearDisplay();
+    dealerCards.push(drawCard());
+    console.log("Dealer: ",dealerCards[0], dealerCards[1])
+    playerTurn = true;
+    playerCards.push(drawCard(), drawCard());
+    console.log("Player 1: ",playerCards[0], playerCards[1])
+    updateScore();
+  }
 }
 
 function drawCard(){
@@ -142,10 +148,10 @@ function drawCard(){
 
 function displayCard(card){
   if(playerTurn === true){
-    document.getElementById('playerCards').innerHTML += "<div class='card'>" + card + "</div>";
+    document.getElementById('playerCards').innerHTML += "<div class='card'>" + "<p>" + card +"</p>" + "</div>";
   }
   else{
-    document.getElementById('dealerCards').innerHTML += "<div class='card'>" + card + "</div>";
+    document.getElementById('dealerCards').innerHTML += "<div class='card'>" + "<p>" + card +"</p>" + "</div>";
   }
 }
 
@@ -170,9 +176,12 @@ function doubleDown(){
 
 function dealerTurn(){
   playerTurn = false;
-  if(dealerScore < 16){
+  if(dealerScore < 16 || dealerCards.length < 2){
     hit(dealerCards);
     dealerTurn();
+  }
+  else if(dealerScore > 21){
+    dealerBust();
   }
   else{
     declareWinner();
@@ -196,14 +205,12 @@ function declareWinner(){
 }
 
 function playerBust(){
-  alert("Player busts!")
   playerScoreDisplay.innerHTML += "<span class='loser'> BUST! </span>"
   dealerScoreDisplay.innerHTML += "<span class='winner'> WINS! </span>"
   cardsDealt = false;
 }
 
 function dealerBust(){
-  alert("Dealer busts!")
   dealerScoreDisplay.innerHTML += "<span class='loser'> BUST! </span>"
   playerScoreDisplay.innerHTML += "<span class='winner'> WINS! </span>"
   cardsDealt = false;

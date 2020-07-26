@@ -1,17 +1,51 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+.bg-img{
+  min-height: 100%;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.3
+} 
+
+.header{
+  margin: 3vh
+}
+.header-text{
+  text-align: center;
+  line-height: 100%;
+  color: #fff;
+  font-size: 3rem;
+}
+
 .btnContainer{
   text-align: center;
+  display: flex;
+  width: 50%;
+  margin: auto;
 }
 
 .btn{
-  display: inline-block;
   margin: auto;
   text-align: center;
   font-size: 3rem;
   color: #fff;
   border: 1px solid;
   border-radius: 20px;
-  width: 10vw;
-  height: 10vh;
+  width: 8vw;
+  height: 8vh;
+  outline: none;
 }
 
 #play{
@@ -41,24 +75,32 @@
 }
 
 .card{
-  height: 80%;
-  width: 20%;
-  margin: auto;
+  height: 70%;
+  width: 15%;
+
   border: 1px solid #000;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 7rem;
   text-align: center;
+  background-color: rgb(228, 228, 228);
+  color: rgb(250, 61, 61);
+}
+
+.card p{
+  line-height: 100%;
 }
 
 #dealerCards{
   display: flex;
   height: 35vh;
   width: 100%;
+  justify-content: center;
 }
 #playerCards{
   display: flex;
   height: 35vh;
   width: 100%;
+  justify-content: center;
 }
 
 .loser{
