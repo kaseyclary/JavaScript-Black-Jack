@@ -8,6 +8,13 @@ body {
   color: #fff;
 }
 
+.app-container{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .bg-img{
   min-height: 100%;
   width: 100%;
@@ -64,6 +71,10 @@ body {
   background-color: #ff2c2c;
 }
 
+#stats{
+  background-color: aquamarine;
+}
+
 #end{
   background-color: #ffa42c;
 }
@@ -113,4 +124,16 @@ body {
 
 .push{
   color: orange;
+}
+
+.statTable{
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 80vw;
+  width: 20vw;
+  height: 100vh;
+  background-color: #000;
+  border: solid 1px red;
+  color: yellow;
 }

@@ -9,12 +9,14 @@ let dealerCards = [];
 let gameOn = false;
 let cardsDealt = false;
 let playerTurn = false;
+let statScreen = false;
 
 let playBtn = document.getElementById('play');
 let dealBtn = document.getElementById('deal');
 let hitBtn = document.getElementById('hit');
 let standBtn = document.getElementById('stand');
 let endBtn = document.getElementById('end');
+let statsBtn = document.getElementById('stats');
 
 /* EVENT LISTENERS FOR BUTTONS */
 playBtn.addEventListener('click', () =>{
@@ -44,6 +46,19 @@ hitBtn.addEventListener('click', () => {
 standBtn.addEventListener('click', () => {
   stand();
 });
+
+statsBtn.addEventListener('click', () => {
+  if(statScreen === false){
+    statScreen = true;
+    document.querySelector('.app-container').style.width = '80vw';
+    document.querySelector('.statTable').style.display = 'block';
+  }
+  else if(statScreen === true){
+    statScreen = false;
+    document.querySelector('.statTable').style.display = 'none';
+    document.querySelector('.app-container').style.width = '100vw';
+  }
+})
 
 //assigns a full, randomly shuffled deck to the deck array
 function shuffleDeck(){
