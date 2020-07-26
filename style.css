@@ -60,3 +60,15 @@
   height: 35vh;
   width: 100%;
 }
+
+.loser{
+  color: red;
+}
+
+.winner{
+  color: green;
+}
+
+.push{
+  color: orange;
+}

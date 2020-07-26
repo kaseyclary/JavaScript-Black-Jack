@@ -72,10 +72,19 @@ function assignCardValue(hand){
   for(let card = 0; card < hand.length; card++){
     if(hand[card] === "K" 
     || hand[card] === "Q" 
-    || hand[card] === "J"
-    //Need a special option for Ace 
-    || hand[card] === "A"){
+    || hand[card] === "J"){
       score = score + 10;
+    }
+    else if(hand[card] === "A"){
+      //check for ace function
+      if(card === 0 && hand.length < 3 
+      || card === 1 && hand.length < 3
+      || score <= 10){
+        score = score + 11;
+      }
+      else{
+        score = score + 1;
+      }
     }
     else {
       score = score + parseInt(hand[card]);
@@ -84,20 +93,24 @@ function assignCardValue(hand){
   return score;
 }
 
+
 function updateScore(){
   dealerScore = assignCardValue(dealerCards);
   playerScore = assignCardValue(playerCards);
+  checkForAce();
+  playerScoreDisplay.textContent = playerScore;
+  dealerScoreDisplay.textContent = dealerScore;
   if (dealerScore > bustScore){
     dealerBust();
   }
   if (playerScore > bustScore){
     playerBust();
   }
-  console.log(playerScore);
-  console.log(dealerScore);
-  playerScoreDisplay.textContent = playerScore;
-  dealerScoreDisplay.textContent = dealerScore;
 };
+
+function checkForAce(){
+
+}
 
 //Deals two cards to the dealer and the player at the start of the round
 function deal(){
@@ -140,7 +153,6 @@ function displayCard(card){
 function hit(hand){
   let newCard = drawCard();
   hand.push(newCard);
-  console.log(newCard);
   updateScore();
 }
 
@@ -169,28 +181,32 @@ function dealerTurn(){
 
 function declareWinner(){
   if(playerScore > dealerScore){
-    alert('Player Wins!');
+    playerScoreDisplay.innerHTML += "<span class='winner'> WINS! </span>"
+    dealerScoreDisplay.innerHTML += "<span class='loser'> LOSES! </span>"
   }
   else if(playerScore === dealerScore){
-    alert("push!")
+    playerScoreDisplay.innerHTML += "<span class='push'> PUSH! </span>"
+    dealerScoreDisplay.innerHTML += "<span class='push'> PUSH! </span>"
   }
   else{
-    alert("Dealer Wins!")
+    playerScoreDisplay.innerHTML += "<span class='loser'> LOSES! </span>"
+    dealerScoreDisplay.innerHTML += "<span class='winner'> WINS! </span>"
   }
-  clearScore();
   cardsDealt = false;
 }
 
 function playerBust(){
   alert("Player busts!")
+  playerScoreDisplay.innerHTML += "<span class='loser'> BUST! </span>"
+  dealerScoreDisplay.innerHTML += "<span class='winner'> WINS! </span>"
   cardsDealt = false;
-  clearScore();
 }
 
 function dealerBust(){
   alert("Dealer busts!")
+  dealerScoreDisplay.innerHTML += "<span class='loser'> BUST! </span>"
+  playerScoreDisplay.innerHTML += "<span class='winner'> WINS! </span>"
   cardsDealt = false;
-  clearScore();
 }
 
 
