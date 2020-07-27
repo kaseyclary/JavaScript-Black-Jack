@@ -1,6 +1,4 @@
 let playerScore, dealerScore;
-let playerScoreDisplay = document.getElementById('playerScore');
-let dealerScoreDisplay = document.getElementById('dealerScore');
 let cardValues = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
 const bustScore = 21;
 let deck = [];
@@ -10,7 +8,10 @@ let gameOn = false;
 let cardsDealt = false;
 let playerTurn = false;
 let statScreen = false;
+let isStand = false;
 
+let playerScoreDisplay = document.getElementById('playerScore');
+let dealerScoreDisplay = document.getElementById('dealerScore');
 let playBtn = document.getElementById('play');
 let dealBtn = document.getElementById('deal');
 let hitBtn = document.getElementById('hit');
@@ -116,12 +117,6 @@ function updateScore(){
   checkForAce();
   playerScoreDisplay.textContent = playerScore;
   dealerScoreDisplay.textContent = dealerScore;
-  if (dealerScore > bustScore){
-    dealerBust();
-  }
-  if (playerScore > bustScore){
-    playerBust();
-  }
 };
 
 function checkForAce(){
@@ -134,14 +129,13 @@ function deal(){
     alert("Finish the hand before dealing again");
   }
   else{
+    isStand = false;
     cardsDealt = true;
     clearScore();
     clearDisplay();
     dealerCards.push(drawCard());
-    console.log("Dealer: ",dealerCards[0], dealerCards[1])
     playerTurn = true;
     playerCards.push(drawCard(), drawCard());
-    console.log("Player 1: ",playerCards[0], playerCards[1])
     updateScore();
   }
 }
@@ -175,10 +169,23 @@ function hit(hand){
   let newCard = drawCard();
   hand.push(newCard);
   updateScore();
+  if(playerScore > bustScore){
+    updateScore();
+    declareWinner();
+  }
+  else if(playerScore === 21){
+    dealerTurn();
+  }
 }
 
 function stand(){
-  dealerTurn();
+  if(isStand === true){
+    alert("you can't do that now");
+  }
+  else{
+    dealerTurn();
+  }
+  isStand = true;
 }
 
 function split(){
@@ -193,10 +200,12 @@ function dealerTurn(){
   playerTurn = false;
   if(dealerScore < 16 || dealerCards.length < 2){
     hit(dealerCards);
-    dealerTurn();
-  }
-  else if(dealerScore > 21){
-    dealerBust();
+    if(dealerScore > 21){
+      declareWinner();
+    }
+    else{
+      dealerTurn();
+    }
   }
   else{
     declareWinner();
@@ -204,7 +213,16 @@ function dealerTurn(){
 }
 
 function declareWinner(){
-  if(playerScore > dealerScore){
+  if(dealerCards.length < 2){
+    dealerCards += dealerCards.drawCard();
+  }
+  else if(dealerScore > bustScore){
+    dealerBust();
+  }
+  else if(playerScore > bustScore){
+    playerBust();
+  }
+  else if(playerScore > dealerScore){
     playerScoreDisplay.innerHTML += "<span class='winner'> WINS! </span>"
     dealerScoreDisplay.innerHTML += "<span class='loser'> LOSES! </span>"
   }
@@ -212,9 +230,12 @@ function declareWinner(){
     playerScoreDisplay.innerHTML += "<span class='push'> PUSH! </span>"
     dealerScoreDisplay.innerHTML += "<span class='push'> PUSH! </span>"
   }
-  else{
+  else if (dealerScore > playerScore){
     playerScoreDisplay.innerHTML += "<span class='loser'> LOSES! </span>"
     dealerScoreDisplay.innerHTML += "<span class='winner'> WINS! </span>"
+  }
+  else{
+    alert('error');
   }
   cardsDealt = false;
 }
