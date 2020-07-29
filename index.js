@@ -1,6 +1,5 @@
 /************************************************************
  * TO-DO:
- * -> Fix aces
  * -> Add double-down
  * -> Add split
  * -> Add stat screen
