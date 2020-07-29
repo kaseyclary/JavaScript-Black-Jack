@@ -10,6 +10,32 @@ let playerTurn = false;
 let statScreen = false;
 let isStand = false;
 
+let player = {
+  cards: [],
+  score: 0,
+  name: '',
+  turn: false,
+  setScore(){
+
+  },
+  getScore(){
+
+  },
+  draw(){
+
+  }
+};
+
+let dealer = {
+  cards: [],
+  score: 0,
+  turn: false
+}
+
+let cardDeck = {
+  cardValues: ["A","2","3","4","5","6","7","8","9","10","J","Q","K"],
+
+}
 let playerScoreDisplay = document.getElementById('playerScore');
 let dealerScoreDisplay = document.getElementById('dealerScore');
 let playBtn = document.getElementById('play');

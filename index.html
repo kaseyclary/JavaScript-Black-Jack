@@ -4,39 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
   <title>Document</title>
 </head>
 <body>
-  <div class="app-container">
-    <img class="bg-img" src="395373-PCH38O-695.jpg" alt="bg img">
-    <div class="header">
-      <h1 class="header-text">Single Deck Blackjack</h1>
-    </div>
-    <div id="cardScreen">
-      <div class="info">
-        <h1>Dealer</h1>
-        <h2>Score: <span id="dealerScore"></span></h2>
+  <div class="appContainer" id="showcase">
+    <div class="appContainer showcase-content">
+      <div class="header">
+        <h1>Single Deck Blackjack</h1>
       </div>
-      <div id="dealerCards"></div>
-      <div class="info">
-        <h1>Player</h1>
-        <h2>Score: <span id="playerScore"></span></h2>
+      <div class="playScreen">
+        <div class="playerBox">
+          <div id="dealerScore"></div>
+          <div id="dealerStatus"></div>
+          <div id="dealerCards">
+          </div>
+        </div>
+        <div class="playerBox">
+          <div id="playerScore"></div>
+          <div id="playerStatus"></div>
+          <div id="playerCards"></div>
+        </div>
       </div>
-      <div id="playerCards"></div>
+      <div class="statScreen">
+      </div>
+        <div class="btnContainer">
+          <button class="btn" id="play">Play</button>
+          <button class="btn" id="deal">Deal</button>
+          <button class="btn" id="hit">Hit</button>
+          <button class="btn" id="stand">Stand</button>
+          <button class="btn" id="end">End</button>
+        </div>
+      </div>
+      
     </div>
-    <div class="btnContainer">
-      <button class="btn" id="play">Play</button>
-      <button class="btn" id="deal">Deal</button>
-      <button class="btn" id="stand">Stand</button>
-      <button class="btn" id="hit">Hit</button>
-      <button class="btn" id="end">End</button>
-      <button class="btn" id="stats">Stats</button>
-    </div>
-  </div>
-  <div class="statTable">
-    
-  </div>
 </body>
-<script src="script.js"></script>
+<script src="ex.js"></script>
 </html>
+
